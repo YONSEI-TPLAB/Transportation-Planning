@@ -46,3 +46,16 @@ df_long %>%
 model_long$freq %>% prop.table()
 
 fitted %>% select(pred_choice) %>% table() %>% prop.table()
+
+
+
+
+# Selection of the type of independent variables --------------------------
+
+library(GGally)
+long %>%
+  data.frame() %>%
+  select(-choice, -idx) %>%
+  ggpairs(mapping=aes(color=mode))
+
+
