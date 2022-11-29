@@ -23,7 +23,7 @@ long <- mlogit.data(df_long, choice='choice', idx=c('id', 'mode'))
 wide <- mlogit.data(df_wide, choice='choice', varying=3:10, sep='_')
 
 model_long <- mlogit(choice~vcost+wait|income+size|travel, data=long)
-model_wide <- mlogit(choice~price+time|comfort, data=wide)
+model_wide <- mlogit(choice~price+time|comfort|0, data=wide)
 
 summary(model_long)
 summary(model_wide)
