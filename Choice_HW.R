@@ -20,7 +20,21 @@ summary(model_wide)
 # Wide data from New file -------------------------------------------------
 
 df_wide %>% write_csv('data/data_canada.csv')
+
 df_wide <- read_csv('data/data_canada.csv')
 wide <- mlogit.data(df_wide, choice='mode', varying=3:30, sep='_')
-model_wide <- mlogit(mode~cost+ovt+freq|income|ivt, data=wide)
+model_wide <- mlogit(mode~ovt+freq|dist+income+urban|ivt, data=wide)
 summary(model_wide)
+
+
+library(GGally)
+wide %>%
+  data.frame() %>%
+  select(-mode, -chid, -idx) %>%
+  ggpairs(mapping=aes(color=alt))
+
+wide %>%
+  data.frame() %>%
+  select(cost, dist)
+
+wide %>% group
